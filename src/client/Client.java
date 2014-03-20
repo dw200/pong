@@ -21,7 +21,7 @@ class Client {
         DEBUG.set(true);
         DEBUG.trace("Pong Client");
         DEBUG.set(false);
-        ClientPongModel model = new ClientPongModel();
+        ClientPongModel model = new ClientPongModel(-1); // pass -1 (player number) as no player yet
         ClientPongView view = new ClientPongView();
         ClientPongController cont = new ClientPongController(model, view);
 
