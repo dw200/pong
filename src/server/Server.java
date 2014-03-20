@@ -1,4 +1,5 @@
 package server;
+
 import java.io.IOException;
 import java.net.*;
 
@@ -6,50 +7,58 @@ import common.*;
 
 /**
  * Start the game server
- *  The call to makeActiveObject() in the model
- *   starts the play of the game
+ * The call to makeActiveObject() in the model
+ * starts the play of the game
  */
-class Server
-{
-  private NetObjectWriter player1, player2;
+class Server {
 
-  public static void main( String args[] )
-  {
-   ( new Server() ).start();
-  }
+    private NetObjectWriter player1, player2;
 
-  /**
-   * Start the server
-   */
-  public void start()
-  {
-    DEBUG.set( true );
-    DEBUG.trace("Pong Server");
-    DEBUG.set( false );               // Otherwise lots of debug info
-    ServerPongModel model = new ServerPongModel();
+    /**
+     * @param args
+     */
+    public static void main(String args[]) {
+        (new Server()).start();
+    }
 
-    makeContactWithClients( model );
+    /**
+     * Start the server
+     */
+    public void start() {
+        DEBUG.set(true);
+        DEBUG.trace("Pong Server");
+        DEBUG.set(false);               // Otherwise lots of debug info
+        ServerPongModel model = new ServerPongModel();
 
-    ServerPongView view  = new ServerPongView(player1, player2);
-                        new ServerPongController( model, view );
+        makeContactWithClients(model);
 
-    model.addObserver( view );       // Add observer to the model
-    model.makeActiveObject();        // Start play
-  }
+        ServerPongView view = new ServerPongView(player1, player2);
+        new ServerPongController(model, view);
 
-  /**
-   * Make contact with the clients who wish to play
-   * Players will need to know about the model
-   * @param model  Of the game
-   */
-  public void makeContactWithClients( ServerPongModel model )
-  {
-      try {
-          ServerSocket serverSocket = new ServerSocket(Global.PORT);
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-  }
+        model.addObserver(view);       // Add observer to the model
+        model.makeActiveObject();        // Start play
+    }
+
+    /**
+     * Make contact with the clients who wish to play
+     * Players will need to know about the model
+     *
+     * @param model Of the game
+     */
+    public void makeContactWithClients(ServerPongModel model) {
+        ServerSocket serverSocket = null;
+        Socket player1Socket = null;
+        Socket player2Socket = null;
+
+        try {
+            serverSocket = new ServerSocket(Global.PORT);
+            player1Socket = serverSocket.accept();
+            player2Socket = serverSocket.accept();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert (serverSocket != null);
+    }
 }
 
 
