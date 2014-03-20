@@ -26,7 +26,7 @@ import static common.Global.*;
  */
 class ClientPongView extends JFrame implements Observer {
     private static final long serialVersionUID = 1L;
-    private ClientPongController pongController;
+
     GameObject ball;
     GameObject[] bats;
 
@@ -136,14 +136,7 @@ class ClientPongView extends JFrame implements Observer {
                     BAT_WIDTH, BAT_HEIGHT));
     }
 
-    /**
-     * Need to be told where the controller is
-     */
-    public void setPongController(ClientPongController aPongController) {
-        pongController = aPongController;
-    }
-
-    /**
+    /**§
      * Methods Called on a key press
      * calls the controller to process key
      */
@@ -151,8 +144,7 @@ class ClientPongView extends JFrame implements Observer {
     {
         public void keyPressed(KeyEvent e)      // Obey this method
         {
-            // Make -ve so not confused with normal characters
-            pongController.userKeyInteraction(-e.getKeyCode());
+
         }
 
         public void keyReleased(KeyEvent e) {
@@ -160,8 +152,7 @@ class ClientPongView extends JFrame implements Observer {
         }
 
         public void keyTyped(KeyEvent e) {
-            // Normal key typed
-            pongController.userKeyInteraction(e.getKeyChar());
+
         }
     }
 }

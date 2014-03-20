@@ -62,6 +62,9 @@ class Server {
         assert (serverSocket != null);
         assert (player1Socket != null);
         assert (player2Socket != null);
+
+        player1.start();
+        player2.start();
     }
 }
 
