@@ -50,7 +50,10 @@ class Player extends Thread {
         DEBUG.trace("Player.run");
 
         while(true) {
+            // check to see if player has been initialised > 1
+            if (playerNumber > -1) {
 
+            }
         }
     }
 }
