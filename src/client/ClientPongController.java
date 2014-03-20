@@ -1,5 +1,8 @@
 package client;
 
+import common.GameObject;
+import common.Global;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -27,20 +30,32 @@ public class ClientPongController {
      * @param keyCode The keycode of the key pressed
      */
     public void userKeyInteraction(int keyCode) {
+
+        if (model.getPlayerNumber() <= -1) {
+            return;
+        }
+
         // Key typed includes specials, -ve
         // Char is ASCII value
+        GameObject bat = model.getBats()[model.getPlayerNumber()];
+
         switch (keyCode)              // Character is
         {
             case -KeyEvent.VK_LEFT:        // Left Arrow
+                bat.setX(bat.getX() - Global.batMove);
                 break;
             case -KeyEvent.VK_RIGHT:       // Right arrow
+                bat.setX(bat.getX() + Global.batMove);
                 break;
             case -KeyEvent.VK_UP:          // Up arrow
-                // Send to server
+                bat.setY(bat.getY() - Global.batMove);
                 break;
             case -KeyEvent.VK_DOWN:        // Down arrow
+                bat.setY(bat.getY() + Global.batMove);
                 break;
         }
+
+        model.modelChanged();
     }
 
 
