@@ -34,7 +34,7 @@ public class Game extends Thread {
 
 
         model.addObserver(view);       // Add observer to the model
-        model.makeActiveObject();        // Start play
+        model.makeActiveObject();      // Start play
     }
 
     /**
@@ -69,8 +69,15 @@ public class Game extends Thread {
         assert (player2NetObjectWriter != null);
 
 
-        player1 = new Player(0, model, player1Socket);
-        player2 = new Player(1, model, player2Socket);
+        try {
+            player1 = new Player(0, model, player1Socket);
+            player2 = new Player(1, model, player2Socket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert (player1 != null);
+        assert (player2 != null);
 
         player1.start();
         player2.start();
