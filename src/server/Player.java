@@ -1,5 +1,8 @@
 package server;
 
+import common.NetObjectReader;
+
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -10,6 +13,7 @@ public class Player extends Thread {
     private int playerNumber;
     private ServerPongModel currentModel;
     private Socket socket;
+    private NetObjectReader reader;
 
     /**
      * Constructor
@@ -18,10 +22,11 @@ public class Player extends Thread {
      * @param model  Model of the game
      * @param s      Socket used to communicate the players bat move
      */
-    public Player(int player, ServerPongModel model, Socket s) {
+    public Player(int player, ServerPongModel model, Socket s) throws IOException {
         playerNumber = player;
         currentModel = model;
         socket = s;
+        this.reader = new NetObjectReader(socket);
     }
 
 
@@ -32,7 +37,21 @@ public class Player extends Thread {
     {
         while(true) {
 
+            String updates = (String)reader.get();
+            String[] data = updates.split(",");
 
+            assert(data.length == 3);
+
+            int playerNumber = Integer.parseInt(data[0]);
+            double x = Double.parseDouble(data[1]);
+            double y = Double.parseDouble(data[2]);
+
+            synchronized (currentModel){
+                currentModel.getBat(playerNumber).setX(x);
+                currentModel.getBat(playerNumber).setY(y);
+
+                currentModel.modelChanged();
+            }
 
         }
     }
