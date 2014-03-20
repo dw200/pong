@@ -2,6 +2,9 @@ package client;
 
 import common.*;
 
+import java.io.IOException;
+import java.net.Socket;
+
 /**
  * Start the client that will display the game for a player
  */
@@ -38,5 +41,15 @@ class Client {
                                       ClientPongController cont) {
         // Also starts the Player task that get the current state
         //  of the game from the server
+        Socket serverSocket = null;
+
+        try {
+            serverSocket = new Socket("127.0.0.1", Global.PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert (serverSocket != null);
+
     }
 }
