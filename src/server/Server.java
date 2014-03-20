@@ -12,7 +12,9 @@ import common.*;
  */
 class Server {
 
-    private NetObjectWriter player1, player2;
+    private NetObjectWriter player1NetObjectWriter, player2NetObjectWriter;
+    private Player player1, player2;
+
 
     /**
      * @param args
@@ -32,7 +34,7 @@ class Server {
 
         makeContactWithClients(model);
 
-        ServerPongView view = new ServerPongView(player1, player2);
+        ServerPongView view = new ServerPongView(player1NetObjectWriter, player2NetObjectWriter);
         new ServerPongController(model, view);
 
         model.addObserver(view);       // Add observer to the model
@@ -58,6 +60,8 @@ class Server {
             e.printStackTrace();
         }
         assert (serverSocket != null);
+        assert (player1Socket != null);
+        assert (player2Socket != null);
     }
 }
 
