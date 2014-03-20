@@ -10,7 +10,6 @@ import java.util.Observer;
  * Displays a graphical view of the game of pong
  */
 class ServerPongView implements Observer {
-    private ServerPongController pongController;
     private GameObject ball;
     private GameObject[] bats;
     private NetObjectWriter left, right;

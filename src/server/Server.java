@@ -35,7 +35,7 @@ class Server {
         makeContactWithClients(model);
 
         ServerPongView view = new ServerPongView(player1NetObjectWriter, player2NetObjectWriter);
-        new ServerPongController(model, view);
+
 
         model.addObserver(view);       // Add observer to the model
         model.makeActiveObject();        // Start play
