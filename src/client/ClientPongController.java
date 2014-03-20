@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * Pong controller, handles user interactions
  */
 public class ClientPongController {
-    private ClientPongModel model;
+    private final ClientPongModel model;
     private ClientPongView view;
 
     /**
@@ -37,25 +37,28 @@ public class ClientPongController {
 
         // Key typed includes specials, -ve
         // Char is ASCII value
-        GameObject bat = model.getBats()[model.getPlayerNumber()];
 
-        switch (keyCode)              // Character is
-        {
-            case -KeyEvent.VK_LEFT:        // Left Arrow
-                bat.setX(bat.getX() - Global.batMove);
-                break;
-            case -KeyEvent.VK_RIGHT:       // Right arrow
-                bat.setX(bat.getX() + Global.batMove);
-                break;
-            case -KeyEvent.VK_UP:          // Up arrow
-                bat.setY(bat.getY() - Global.batMove);
-                break;
-            case -KeyEvent.VK_DOWN:        // Down arrow
-                bat.setY(bat.getY() + Global.batMove);
-                break;
+        synchronized (model) {
+            GameObject bat = model.getBats()[model.getPlayerNumber()];
+
+            switch (keyCode)              // Character is
+            {
+                case -KeyEvent.VK_LEFT:        // Left Arrow
+                    bat.setX(bat.getX() - Global.batMove);
+                    break;
+                case -KeyEvent.VK_RIGHT:       // Right arrow
+                    bat.setX(bat.getX() + Global.batMove);
+                    break;
+                case -KeyEvent.VK_UP:          // Up arrow
+                    bat.setY(bat.getY() - Global.batMove);
+                    break;
+                case -KeyEvent.VK_DOWN:        // Down arrow
+                    bat.setY(bat.getY() + Global.batMove);
+                    break;
+            }
+
+            model.modelChanged();
         }
-
-        model.modelChanged();
     }
 
 
