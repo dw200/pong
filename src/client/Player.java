@@ -2,6 +2,7 @@ package client;
 
 import common.*;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -9,6 +10,12 @@ import java.net.Socket;
  * updates immediately the bat is moved
  */
 class Player extends Thread {
+
+    private ClientPongModel currentModel;
+    private Socket socket;
+    private int playerNumber = -1;
+    private NetObjectReader playerNetObjectReader;
+    private NetObjectWriter playerNetObjectWriter;
 
     /**
      * Constructor
@@ -18,6 +25,16 @@ class Player extends Thread {
      */
     public Player(ClientPongModel model, Socket s) {
         // The player needs to know this to be able to work
+        currentModel = model;
+        socket = s;
+
+        try {
+            playerNetObjectReader = new NetObjectReader(s);
+            playerNetObjectWriter = new NetObjectWriter(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -31,5 +48,9 @@ class Player extends Thread {
         //  game from the server
         // Update model with this information, Redisplay model
         DEBUG.trace("Player.run");
+
+        while(true) {
+
+        }
     }
 }
