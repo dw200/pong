@@ -30,6 +30,5 @@ public class Player extends Thread {
      */
     public void run()                             // Execution
     {
-
     }
 }

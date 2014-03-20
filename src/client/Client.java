@@ -19,9 +19,9 @@ class Client {
         DEBUG.set(false);
         ClientPongModel model = new ClientPongModel();
         ClientPongView view = new ClientPongView();
+        ClientPongController cont = new ClientPongController(model, view);
 
-
-        makeContactWithServer(model);
+        makeContactWithServer(model, cont);
 
         model.addObserver(view);       // Add observer to the model
         view.setVisible(true);           // Display Screen
@@ -30,10 +30,12 @@ class Client {
     /**
      * Make contact with the Server who controls the game
      * Players will need to know about the model
-     *  @param model Of the game
      *
+     * @param model Of the game
+     * @param cont  Controller (MVC) of the Game
      */
-    public void makeContactWithServer(ClientPongModel model) {
+    public void makeContactWithServer(ClientPongModel model,
+                                      ClientPongController cont) {
         // Also starts the Player task that get the current state
         //  of the game from the server
     }
