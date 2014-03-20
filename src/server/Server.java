@@ -63,6 +63,20 @@ class Server {
         assert (player1Socket != null);
         assert (player2Socket != null);
 
+        try {
+            player1NetObjectWriter = new NetObjectWriter(player1Socket);
+            player2NetObjectWriter = new NetObjectWriter(player2Socket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert (player1NetObjectWriter != null);
+        assert (player2NetObjectWriter != null);
+
+
+        player1 = new Player(0, model, player1Socket);
+        player2 = new Player(1, model, player2Socket);
+
         player1.start();
         player2.start();
     }

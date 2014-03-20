@@ -56,7 +56,9 @@ class Player extends Thread {
 
             }
 
+
             String dataString = (String)playerNetObjectReader.get();
+
             String[] dataArray = dataString.split(",");
             assert (dataArray.length == 7); // assume that there are 7 values
             playerNumber = Integer.parseInt(dataArray[0]); // get first element of array (player number)
@@ -66,6 +68,15 @@ class Player extends Thread {
             double bat2y = Double.parseDouble(dataArray[4]);
             double ballx = Double.parseDouble(dataArray[5]);
             double bally = Double.parseDouble(dataArray[6]);
+
+            currentModel.getBats()[0].setX(bat1x);
+            currentModel.getBats()[0].setY(bat1y);
+            currentModel.getBats()[1].setX(bat2x);
+            currentModel.getBats()[1].setY(bat2y);
+            currentModel.getBall().setX(ballx);
+            currentModel.getBall().setY(bally);
+
+            currentModel.modelChanged();
 
         }
     }

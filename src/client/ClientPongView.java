@@ -31,7 +31,7 @@ class ClientPongView extends JFrame implements Observer {
     GameObject[] bats;
 
     public ClientPongView() {
-        setSize(width, height);                        // Size of window
+        setSize(windowWidth, windowHeight);                        // Size of window
         addKeyListener(new Transaction());    // Called when key press
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -81,7 +81,7 @@ class ClientPongView extends JFrame implements Observer {
             theAG = theAI.createGraphics();
             AffineTransform at = new AffineTransform();
             at.setToIdentity();
-            at.scale(((double) d.width) / width, ((double) d.height) / height);
+            at.scale(((double) d.width) / windowWidth, ((double) d.height) / windowHeight);
             theAG.transform(at);
         }
 
@@ -103,7 +103,7 @@ class ClientPongView extends JFrame implements Observer {
         // White background
 
         g.setPaint(Color.white);
-        g.fill(new Rectangle2D.Double(0, 0, width, height));
+        g.fill(new Rectangle2D.Double(0, 0, windowWidth, windowHeight));
 
         Font font = new Font("Monospaced", Font.PLAIN, 14);
         g.setFont(font);
@@ -111,7 +111,7 @@ class ClientPongView extends JFrame implements Observer {
         // Blue playing border
 
         g.setPaint(Color.blue);              // Paint Colour
-        g.draw(new Rectangle2D.Double(B, M, width - B * 2, height - M - B));
+        g.draw(new Rectangle2D.Double(borderOffset, menuOffset, windowWidth - borderOffset * 2, windowHeight - menuOffset - borderOffset));
 
         // Display state of game
         if (ball == null) return;  // Race condition
@@ -122,18 +122,18 @@ class ClientPongView extends JFrame implements Observer {
         String text = String.format(fmt, ball.getX(), ball.getY(),
                 bats[0].getX(), bats[0].getY(),
                 bats[1].getX(), bats[1].getY());
-        g.drawString(text, width / 2 - fm.stringWidth(text) / 2, (int) M * 2);
+        g.drawString(text, windowWidth / 2 - fm.stringWidth(text) / 2, (int) menuOffset * 2);
 
-        // The ball at the current x, y position (width, height)
+        // The ball at the current x, y position (windowWidth, windowHeight)
 
         g.setPaint(Color.red);
         g.fill(new Rectangle2D.Double(ball.getX(), ball.getY(),
-                ball_size, ball_size));
+                ballSize, ballSize));
 
         g.setPaint(Color.blue);
         for (int i = 0; i < 2; i++)
             g.fill(new Rectangle2D.Double(bats[i].getX(), bats[i].getY(),
-                    BAT_WIDTH, BAT_HEIGHT));
+                    batWidth, batHeight));
     }
 
     /**

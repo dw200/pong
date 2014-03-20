@@ -11,14 +11,14 @@ import java.util.Observable;
  * The active object ActiveModel does the work of moving the ball
  */
 public class ServerPongModel extends Observable {
-    private GameObject ball = new GameObject(width / 2, height / 2, ball_size, ball_size);
+    private GameObject ball = new GameObject(windowWidth / 2, windowHeight / 2, ballSize, ballSize);
     private GameObject bats[] = new GameObject[2];
 
     private Thread activeModel;
 
     public ServerPongModel() {
-        bats[0] = new GameObject(60, height / 2, BAT_WIDTH, BAT_HEIGHT);
-        bats[1] = new GameObject(width - 60, height / 2, BAT_WIDTH, BAT_HEIGHT);
+        bats[0] = new GameObject(60, windowHeight / 2, batWidth, batHeight);
+        bats[1] = new GameObject(windowWidth - 60, windowHeight / 2, batWidth, batHeight);
         activeModel = new Thread(new ServerActiveModel(this));
     }
 
