@@ -74,10 +74,15 @@ class Player extends Thread {
             double ballx = Double.parseDouble(dataArray[5]);
             double bally = Double.parseDouble(dataArray[6]);
 
-            currentModel.getBats()[0].setX(bat1x);
-            currentModel.getBats()[0].setY(bat1y);
-            currentModel.getBats()[1].setX(bat2x);
-            currentModel.getBats()[1].setY(bat2y);
+
+            if(playerNumber == 0){
+                currentModel.getBats()[1].setX(bat2x);
+                currentModel.getBats()[1].setY(bat2y);
+            }else {
+                currentModel.getBats()[0].setX(bat1x);
+                currentModel.getBats()[0].setY(bat1y);
+            }
+
             currentModel.getBall().setX(ballx);
             currentModel.getBall().setY(bally);
 
