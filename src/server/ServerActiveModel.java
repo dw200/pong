@@ -21,7 +21,7 @@ class ServerActiveModel implements Runnable {
      * runs as a separate thread
      */
     public void run() {
-        final double S = 1;           // Units to move
+        final double unitsToMove = 1;           // Units to move
         try {
             GameObject ball = pongModel.getBall();
             GameObject bats[] = pongModel.getBats();
@@ -30,14 +30,13 @@ class ServerActiveModel implements Runnable {
                 double x = ball.getX();
                 double y = ball.getY();
                 // Deal with possible edge of board hit
-                if (x >= width - B - ball_size) ball.changeDirectionX();
-                if (x <= 0 + B) ball.changeDirectionX();
-                if (y >= height - B - ball_size)
-                    ball.changeDirectionY();
-                if (y <= 0 + M) ball.changeDirectionY();
+                if (x >= windowWidth - borderOffset - ballSize) ball.changeDirectionX();
+                if (x <= 0 + borderOffset) ball.changeDirectionX();
+                if (y >= windowHeight - borderOffset - ballSize) ball.changeDirectionY();
+                if (y <= 0 + menuOffset) ball.changeDirectionY();
 
-                ball.moveX(S);
-                ball.moveY(S);
+                ball.moveX(unitsToMove);
+                ball.moveY(unitsToMove);
 
                 // As only a hit on the bat is detected it is assumed to be
                 // on the front or back of the bat
