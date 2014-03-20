@@ -12,9 +12,11 @@ import static common.Global.*;
 public class ClientPongModel extends Observable {
     private GameObject ball = new GameObject(windowWidth / 2, windowHeight / 2, ballSize, ballSize);
     private GameObject bats[] = new GameObject[2];
+    private int playerNumber = -1;
 
 
-    public ClientPongModel() {
+    public ClientPongModel(int playerNumber) {
+        this.playerNumber = playerNumber;
         bats[0] = new GameObject(60, windowHeight / 2, batWidth, batHeight);
         bats[1] = new GameObject(windowWidth - 60, windowHeight / 2, batWidth, batHeight);
     }
@@ -63,4 +65,11 @@ public class ClientPongModel extends Observable {
         notifyObservers();
     }
 
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int newPlayerNumber) {
+        playerNumber = newPlayerNumber;
+    }
 }
