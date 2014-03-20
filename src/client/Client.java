@@ -12,6 +12,7 @@ class Client {
     public static void main(String args[]) {
         (new Client()).start();
     }
+    private Player currentPlayer = null;
 
     /**
      * Start the Client
@@ -50,6 +51,8 @@ class Client {
         }
 
         assert (serverSocket != null);
+        currentPlayer = new Player(model, serverSocket);
+        currentPlayer.start();
 
     }
 }
