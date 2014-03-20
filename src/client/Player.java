@@ -53,7 +53,9 @@ class Player extends Thread {
             // check to see if player has been initialised > 1
             // this means a game has started and we've been
             if (playerNumber > -1) {
-
+                GameObject bat = currentModel.getBats()[playerNumber];
+                String dataString = String.format("%d,%f,%f", playerNumber, bat.getX(), bat.getY());
+                playerNetObjectWriter.put(dataString);
             }
 
 
@@ -62,6 +64,9 @@ class Player extends Thread {
             String[] dataArray = dataString.split(",");
             assert (dataArray.length == 7); // assume that there are 7 values
             playerNumber = Integer.parseInt(dataArray[0]); // get first element of array (player number)
+
+            currentModel.setPlayerNumber(playerNumber);
+
             double bat1x = Double.parseDouble(dataArray[1]);
             double bat1y = Double.parseDouble(dataArray[2]);
             double bat2x = Double.parseDouble(dataArray[3]);
