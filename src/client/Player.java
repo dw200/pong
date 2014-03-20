@@ -60,12 +60,12 @@ class Player extends Thread {
             String[] dataArray = dataString.split(",");
             assert (dataArray.length == 7); // assume that there are 7 values
             playerNumber = Integer.parseInt(dataArray[0]); // get first element of array (player number)
-            int bat1x = Integer.parseInt(dataArray[1]);
-            int bat1y = Integer.parseInt(dataArray[2]);
-            int bat2x = Integer.parseInt(dataArray[3]);
-            int bat2y = Integer.parseInt(dataArray[4]);
-            int ballx = Integer.parseInt(dataArray[5]);
-            int bally = Integer.parseInt(dataArray[6]);
+            double bat1x = Double.parseDouble(dataArray[1]);
+            double bat1y = Double.parseDouble(dataArray[2]);
+            double bat2x = Double.parseDouble(dataArray[3]);
+            double bat2y = Double.parseDouble(dataArray[4]);
+            double ballx = Double.parseDouble(dataArray[5]);
+            double bally = Double.parseDouble(dataArray[6]);
 
         }
     }
