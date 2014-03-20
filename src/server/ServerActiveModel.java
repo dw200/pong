@@ -32,7 +32,8 @@ class ServerActiveModel implements Runnable {
                 // Deal with possible edge of board hit
                 if (x >= width - B - ball_size) ball.changeDirectionX();
                 if (x <= 0 + B) ball.changeDirectionX();
-                if (y >= height - B - ball_size) ball.changeDirectionY();
+                if (y >= height - B - ball_size)
+                    ball.changeDirectionY();
                 if (y <= 0 + M) ball.changeDirectionY();
 
                 ball.moveX(S);
