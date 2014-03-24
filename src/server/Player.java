@@ -38,20 +38,7 @@ public class Player extends Thread {
         while(true) {
 
             String updates = (String)reader.get();
-            String[] data = updates.split(",");
-
-            assert(data.length == 3);
-
-            int playerNumber = Integer.parseInt(data[0]);
-            double x = Double.parseDouble(data[1]);
-            double y = Double.parseDouble(data[2]);
-
-            synchronized (currentModel){
-                currentModel.getBat(playerNumber).setX(x);
-                currentModel.getBat(playerNumber).setY(y);
-
-                currentModel.modelChanged();
-            }
+           currentModel.queueBatUpdate(updates);
 
         }
     }
