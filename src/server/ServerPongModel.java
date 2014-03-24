@@ -4,7 +4,9 @@ import common.*;
 
 import static common.Global.*;
 
+import java.util.ArrayList;
 import java.util.Observable;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Model of the game of pong
@@ -13,6 +15,8 @@ import java.util.Observable;
 public class ServerPongModel extends Observable {
     private GameObject ball = new GameObject(windowWidth / 2, windowHeight / 2, ballSize, ballSize);
     private GameObject bats[] = new GameObject[2];
+
+    private volatile ArrayBlockingQueue<String> updateQueue = new ArrayBlockingQueue<String>(256);
 
     private Thread activeModel;
 
@@ -83,5 +87,25 @@ public class ServerPongModel extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    public void queueBatUpdate(String updateString) {
+        updateQueue.offer(updateString);
+    }
+
+    public void processUpdates() {
+        ArrayList<String> updates = new ArrayList<String>();
+        updateQueue.drainTo(updates);
+        for (String update:updates) {
+            String[] data = update.split(",");
+            assert(data.length != 3);
+            int playerNumber = Integer.parseInt(data[0]);
+            double batx = Double.parseDouble(data[1]);
+            double baty = Double.parseDouble(data[2]);
+
+            getBat(playerNumber).setX(batx);
+            getBat(playerNumber).setY(baty);
+        }
+    }
+
 
 }
