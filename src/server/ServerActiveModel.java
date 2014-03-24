@@ -23,10 +23,10 @@ class ServerActiveModel implements Runnable {
     public void run() {
         final double unitsToMove = 1;           // Units to move
         try {
-            GameObject ball = pongModel.getBall();
-            GameObject bats[] = pongModel.getBats();
-
             while (true) {
+                pongModel.processUpdates();
+                GameObject ball = pongModel.getBall();
+                GameObject bats[] = pongModel.getBats();
                 double x = ball.getX();
                 double y = ball.getY();
                 // Deal with possible edge of board hit
