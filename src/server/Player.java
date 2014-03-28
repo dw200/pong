@@ -14,16 +14,16 @@ public class Player extends Thread {
     /**
      * Constructor
      *
-     * @param player Player 1 or 2
-     * @param model  Model of the game
-     * @param s      Socket used to communicate the players bat move
+     * @param playerNumber Player 1 or 2
+     * @param currentModel  Model of the game
+     * @param socket      Socket used to communicate the players bat move
      */
-    public Player(int player, ServerPongModel model,
-                  Socket s) throws IOException {
-        playerNumber = player;
-        currentModel = model;
-        socket = s;
-        this.reader = new NetObjectReader(socket);
+    public Player(int playerNumber, ServerPongModel currentModel,
+                  Socket socket) throws IOException {
+        this.playerNumber = playerNumber;
+        this.currentModel = currentModel;
+        this.socket = socket;
+        this.reader = new NetObjectReader(this.socket);
     }
     /**
      * Get and update the model with the latest bat movement
