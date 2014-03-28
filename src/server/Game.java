@@ -21,14 +21,14 @@ public class Game extends Thread {
         makeContactWithClients(model);
     }
     public void run() {
-        ServerPongView view = new ServerPongView(player1NetObjectWriter, player2NetObjectWriter);
-        model.addObserver(view);       // Add observer to the model
-        model.makeActiveObject();      // Start play
+        ServerPongView view = new ServerPongView
+                (player1NetObjectWriter, player2NetObjectWriter);
+        model.addObserver(view); // Add observer to the model
+        model.makeActiveObject(); // Start play
     }
     /**
      * Make contact with the clients who wish to play
      * Players will need to know about the model
-     *
      * @param model Of the game
      */
     public void makeContactWithClients(ServerPongModel model) {

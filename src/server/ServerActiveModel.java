@@ -16,33 +16,37 @@ class ServerActiveModel implements Runnable {
      * runs as a separate thread
      */
     public void run() {
-        final double unitsToMove = 1;           // Units to move
+        final double unitsToMove = 1; // Units to move
         try {
             while (true) {
                 pongModel.processUpdates();
                 GameObject ball = pongModel.getBall();
                 GameObject bats[] = pongModel.getBats();
-                double x = ball.getX();
-                double y = ball.getY();
+                double ballPositionX = ball.getX();
+                double ballPositionY = ball.getY();
                 // Deal with possible edge of board hit
-                if (x >= windowWidth - borderOffset - ballSize) ball.changeDirectionX();
-                if (x <= 0 + borderOffset) ball.changeDirectionX();
-                if (y >= windowHeight - borderOffset - ballSize) ball.changeDirectionY();
-                if (y <= 0 + menuOffset) ball.changeDirectionY();
+                if (ballPositionX >= windowWidth - borderOffset -
+                        ballSize) ball.changeDirectionX();
+                if (ballPositionX <= 0 + borderOffset) ball
+                        .changeDirectionX();
+                if (ballPositionY >= windowHeight - borderOffset -
+                        ballSize) ball.changeDirectionY();
+                if (ballPositionY <= 0 + menuOffset) ball
+                        .changeDirectionY();
                 ball.moveX(unitsToMove);
                 ball.moveY(unitsToMove);
-                // As only a hit on the bat is detected it is assumed to be
-                // on the front or back of the bat
+                // As only a hit on the bat is detected it is assumed
+                // to be on the front or back of the bat
                 // A hit on the top or bottom has an interesting affect
                 if (bats[0].collision(ball) == GameObject.Collision.HIT ||
                         bats[1].collision(ball) == GameObject.Collision.HIT) {
                     ball.changeDirectionX();
                 }
-                pongModel.modelChanged();      // Model changed refresh screen
-                Thread.sleep(20);            // About 50 Hz
+                pongModel.modelChanged(); // Model changed refresh
+                // screen
+                Thread.sleep(20); // About 50 Hz
             }
         } catch (Exception e) {
         };
     }
 }
-

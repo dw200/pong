@@ -18,7 +18,8 @@ public class Player extends Thread {
      * @param model  Model of the game
      * @param s      Socket used to communicate the players bat move
      */
-    public Player(int player, ServerPongModel model, Socket s) throws IOException {
+    public Player(int player, ServerPongModel model,
+                  Socket s) throws IOException {
         playerNumber = player;
         currentModel = model;
         socket = s;

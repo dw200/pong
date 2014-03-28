@@ -16,7 +16,10 @@ public class NetObjectWriter extends ObjectOutputStream {
         try {
             writeObject(data); // Write object
             flush(); // Flush
-            reset(); /* Reset stream or otherwise we keep writing the same object, as we're using strings, it will cache the string */
+            /* Reset stream or otherwise we keep writing the
+             same object, as we're using strings,
+             it will cache the string */
+            reset();
             return true; // Ok
         } catch (IOException err) {
             DEBUG.error("NetObjectWriter.get %s",

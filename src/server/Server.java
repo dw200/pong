@@ -9,7 +9,8 @@ import common.*;
  * starts the play of the game
  */
 class Server {
-    private NetObjectWriter player1NetObjectWriter, player2NetObjectWriter;
+    private NetObjectWriter player1NetObjectWriter,
+            player2NetObjectWriter;
     private Player player1, player2;
     /**
      * @param args
