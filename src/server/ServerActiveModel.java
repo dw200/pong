@@ -22,8 +22,8 @@ class ServerActiveModel implements Runnable {
                 pongModel.processUpdates();
                 GameObject ball = pongModel.getBall();
                 GameObject bats[] = pongModel.getBats();
-                double ballPositionX = ball.getX();
-                double ballPositionY = ball.getY();
+                double ballPositionX = ball.getGameObjectPositionX();
+                double ballPositionY = ball.getGameObjectPositionY();
                 // Deal with possible edge of board hit
                 if (ballPositionX >= windowWidth - borderOffset -
                         ballSize) ball.changeDirectionX();

@@ -86,8 +86,8 @@ public class ServerPongModel extends Observable {
             int playerNumber = Integer.parseInt(data[0]);
             double batPositionX = Double.parseDouble(data[1]);
             double batPositionY = Double.parseDouble(data[2]);
-            getBat(playerNumber).setX(batPositionX);
-            getBat(playerNumber).setY(batPositionY);
+            getBat(playerNumber).setGameObjectPositionX(batPositionX);
+            getBat(playerNumber).setGameObjectPositionY(batPositionY);
         }
     }
 }

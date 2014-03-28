@@ -44,16 +44,16 @@ public class ClientPongController {
             switch (keyCode)              // Character is
             {
                 case -KeyEvent.VK_LEFT:        // Left Arrow
-                    bat.setX(bat.getX() - Global.batMove);
+                    bat.setGameObjectPositionX(bat.getGameObjectPositionX() - Global.batMove);
                     break;
                 case -KeyEvent.VK_RIGHT:       // Right arrow
-                    bat.setX(bat.getX() + Global.batMove);
+                    bat.setGameObjectPositionX(bat.getGameObjectPositionX() + Global.batMove);
                     break;
                 case -KeyEvent.VK_UP:          // Up arrow
-                    bat.setY(bat.getY() - Global.batMove);
+                    bat.setGameObjectPositionY(bat.getGameObjectPositionY() - Global.batMove);
                     break;
                 case -KeyEvent.VK_DOWN:        // Down arrow
-                    bat.setY(bat.getY() + Global.batMove);
+                    bat.setGameObjectPositionY(bat.getGameObjectPositionY() + Global.batMove);
                     break;
             }
 

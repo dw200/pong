@@ -27,8 +27,8 @@ class ServerPongView implements Observer {
         // as the model on the server has changed
         // Left off first parameter so we can reuse
         String dataString = String.format(",%f,%f,%f,%f,%f,%f",
-                bats[0].getX(), bats[0].getY(), bats[1].getX(),
-                bats[1].getY(), ball.getX(), ball.getY());
+                bats[0].getGameObjectPositionX(), bats[0].getGameObjectPositionY(), bats[1].getGameObjectPositionX(),
+                bats[1].getGameObjectPositionY(), ball.getGameObjectPositionX(), ball.getGameObjectPositionY());
         // reusing the dataString above and appending the player
         // number to the beginning
         client1.put("0" + dataString);
