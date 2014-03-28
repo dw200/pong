@@ -119,20 +119,20 @@ class ClientPongView extends JFrame implements Observer {
         FontMetrics fm = getFontMetrics(font);
         String fmt = "Pong - Ball [%3.0f, %3.0f] Bat [%3.0f, %3.0f]" +
                 " Bat [%3.0f, %3.0f]";
-        String text = String.format(fmt, ball.getX(), ball.getY(),
-                bats[0].getX(), bats[0].getY(),
-                bats[1].getX(), bats[1].getY());
+        String text = String.format(fmt, ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
+                bats[0].getGameObjectPositionX(), bats[0].getGameObjectPositionY(),
+                bats[1].getGameObjectPositionX(), bats[1].getGameObjectPositionY());
         g.drawString(text, windowWidth / 2 - fm.stringWidth(text) / 2, (int) menuOffset * 2);
 
         // The ball at the current x, y position (windowWidth, windowHeight)
 
         g.setPaint(Color.red);
-        g.fill(new Rectangle2D.Double(ball.getX(), ball.getY(),
+        g.fill(new Rectangle2D.Double(ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
                 ballSize, ballSize));
 
         g.setPaint(Color.blue);
         for (int i = 0; i < 2; i++)
-            g.fill(new Rectangle2D.Double(bats[i].getX(), bats[i].getY(),
+            g.fill(new Rectangle2D.Double(bats[i].getGameObjectPositionX(), bats[i].getGameObjectPositionY(),
                     batWidth, batHeight));
     }
 
