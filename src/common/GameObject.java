@@ -1,7 +1,5 @@
 package common;
-
 import java.io.*;
-
 /*
  * An Object in the game, represented as a rectangle
  *  Holds details of shape, plus possible direction of travel
@@ -9,9 +7,7 @@ import java.io.*;
 public class GameObject implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public enum Collision {HIT, NO_HIT}
-
-    ;
+    public enum Collision {HIT, NO_HIT};
     // All the variables below are vital to the state of the object
     private double topX = 0.0;          // Top left corner X
     private double topY = 0.0;          // Top left corner Y

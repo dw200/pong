@@ -1,10 +1,7 @@
 package server;
-
 import common.NetObjectReader;
-
 import java.io.IOException;
 import java.net.Socket;
-
 /**
  * Individual player run as a separate thread to allow
  * updates to the model when a player moves there bat
@@ -14,7 +11,6 @@ public class Player extends Thread {
     private ServerPongModel currentModel;
     private Socket socket;
     private NetObjectReader reader;
-
     /**
      * Constructor
      *
@@ -28,18 +24,13 @@ public class Player extends Thread {
         socket = s;
         this.reader = new NetObjectReader(socket);
     }
-
-
     /**
      * Get and update the model with the latest bat movement
      */
-    public void run()                             // Execution
-    {
+    public void run() {
         while(true) {
-
             String updates = (String)reader.get();
            currentModel.queueBatUpdate(updates);
-
         }
     }
 }
