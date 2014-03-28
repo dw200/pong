@@ -9,12 +9,23 @@ import java.util.concurrent.ArrayBlockingQueue;
  * The active object ActiveModel does the work of moving the ball
  */
 public class ServerPongModel extends Observable {
+    /* Place a ball in the middle of the screen. */
     private GameObject ball = new GameObject(windowWidth / 2,
             windowHeight / 2, ballSize, ballSize);
+    /* Create array of bats. */
     private GameObject bats[] = new GameObject[2];
+    /* Create the update queue. This will hold all of the movements
+    of the bats that are to be processed. As each one has to go
+    through this queue it prevents lock. It is of size 256 meaning
+    that 256 movements can be passed to it before it is full. As the
+    server processes the movements much quicker than this we don't
+    have to worry. */
     private volatile ArrayBlockingQueue<String> updateQueue = new
             ArrayBlockingQueue<String>(256);
+
     private Thread activeModel;
+    /* Create the server pong model and position the bats accordingly
+     on the screen. */
     public ServerPongModel() {
         bats[0] = new GameObject(60, windowHeight / 2, batWidth,
                 batHeight);
