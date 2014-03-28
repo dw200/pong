@@ -35,11 +35,13 @@ public class Game extends Thread {
         Socket player1Socket = null;
         Socket player2Socket = null;
         try {
+            /* Assign two players to the socket. */
             player1Socket = serverSocket.accept();
             player2Socket = serverSocket.accept();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
+        /* Check to see if the sockets have been assigned. */
         assert (player1Socket != null);
         assert (player2Socket != null);
         try {
@@ -56,6 +58,7 @@ public class Game extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /* Only start if there are two players present for each game. */
         assert (player1 != null);
         assert (player2 != null);
         player1.start();
