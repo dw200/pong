@@ -54,7 +54,7 @@ class Player extends Thread {
             // this means a game has started and we've been
             if (playerNumber > -1) {
                 GameObject bat = currentModel.getBats()[playerNumber];
-                String dataString = String.format("%d,%f,%f", playerNumber, bat.getX(), bat.getY());
+                String dataString = String.format("%d,%f,%f", playerNumber, bat.getGameObjectPositionX(), bat.getGameObjectPositionY());
                 playerNetObjectWriter.put(dataString);
             }
 
@@ -76,15 +76,15 @@ class Player extends Thread {
 
 
             if(playerNumber == 0){
-                currentModel.getBats()[1].setX(bat2x);
-                currentModel.getBats()[1].setY(bat2y);
+                currentModel.getBats()[1].setGameObjectPositionX(bat2x);
+                currentModel.getBats()[1].setGameObjectPositionY(bat2y);
             }else {
-                currentModel.getBats()[0].setX(bat1x);
-                currentModel.getBats()[0].setY(bat1y);
+                currentModel.getBats()[0].setGameObjectPositionX(bat1x);
+                currentModel.getBats()[0].setGameObjectPositionY(bat1y);
             }
 
-            currentModel.getBall().setX(ballx);
-            currentModel.getBall().setY(bally);
+            currentModel.getBall().setGameObjectPositionX(ballx);
+            currentModel.getBall().setGameObjectPositionY(bally);
 
             currentModel.modelChanged();
 
