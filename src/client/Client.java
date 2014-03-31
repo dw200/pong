@@ -43,7 +43,7 @@ class Client {
         Socket serverSocket = null;
 
         try {
-            serverSocket = new Socket(Global.HOST, Global.PORT);
+            serverSocket = new Socket(Global.host, Global.port);
         } catch (IOException e) {
             e.printStackTrace();
         }
