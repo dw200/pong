@@ -14,12 +14,12 @@ public class ServerPongModel extends Observable {
             windowHeight / 2, ballSize, ballSize);
     /* Create array of bats. */
     private GameObject bats[] = new GameObject[2];
-    /* Create the update queue. This will hold all of the movements
-    of the bats that are to be processed. As each one has to go
-    through this queue it prevents lock. It is of size 256 meaning
-    that 256 movements can be passed to it before it is full. As the
-    server processes the movements much quicker than this we don't
-    have to worry. */
+    /** Create the update queue. This will hold all of the movements
+     * of the bats that are to be processed. As each one has to go
+     * through this queue it doesn't lock. It will block any updates
+     * when being mutated that 256 movements can be passed to it
+     * before it is full. As the server processes the movements much
+     * quicker than this we don't have to worry. */
     private volatile ArrayBlockingQueue<String> updateQueue = new
             ArrayBlockingQueue<String>(256);
 
