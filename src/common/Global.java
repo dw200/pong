@@ -12,5 +12,6 @@ public class Global {
     public static final double batWidth = 10;
     public static final double batHeight = 100;
     public static final double batMove = 5;
-    public static final int PORT = 50001;
+    public static final int port = 50001;
+    public static final String host = "localhost";
 }
