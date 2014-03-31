@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 /**
- * Created by Mike on 20/03/2014.
+ *
  */
 public class Game extends Thread {
     private NetObjectWriter player1NetObjectWriter;
