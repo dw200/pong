@@ -1,5 +1,4 @@
 package client;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +17,6 @@ import java.util.Observer;
 import common.DEBUG;
 import common.GameObject;
 import static common.Global.*;
-
 /**
  * Displays a graphical view of the game of pong
  */
@@ -27,7 +25,6 @@ class ClientPongView extends JFrame implements Observer {
     private ClientPongController pongController;
     GameObject ball;
     GameObject[] bats;
-
     public ClientPongView() {
         /* Size of window */
         setSize(windowWidth, windowHeight);
@@ -35,7 +32,6 @@ class ClientPongView extends JFrame implements Observer {
         addKeyListener(new Transaction());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
     /**
      * Called from the model when its state is changed
      * @param aPongModel Model of the game
@@ -49,26 +45,21 @@ class ClientPongView extends JFrame implements Observer {
         /* Re draw game */
         repaint();
     }
-
     /* Called by repaint */
     public void update(Graphics graphics) {
         /* Draw Picture */
         drawPicture((Graphics2D) graphics);
     }
-
     /* When 'Window' is first */
     public void paint(Graphics graphics) {
         /* shown or damaged, Draw Picture */
         drawPicture((Graphics2D) graphics);
     }
-
     private Dimension alternateDimension; // Alternate Dimension
     private BufferedImage alternateImage; // Alternate Image
     private Graphics2D alternateGraphics; // Alternate Graphics
-
     /**
      * The code that actually displays the game graphically
-     *
      * @param graphics2D Graphics context to use
      */
     /* Double buffer */
@@ -90,21 +81,17 @@ class ClientPongView extends JFrame implements Observer {
                     windowHeight);
             alternateGraphics.transform(affineTransform);
         }
-
         /* Draw Actual Picture */
         drawActualPicture(alternateGraphics);
         /* Display on screen */
         graphics2D.drawImage(alternateImage, 0, 0, this);
     }
-
-
     /**
      * Code called to draw the current state of the game
      * Uses draw:       Draw a shape
      * fill:       Fill the shape
      * setPaint:   Colour used
      * drawString: Write string on display
-     *
      * @param graphics2D Graphics context to use
      */
     public void drawActualPicture(Graphics2D graphics2D) {
@@ -146,7 +133,6 @@ class ClientPongView extends JFrame implements Observer {
                 .getGameObjectPositionX(),
                 ball.getGameObjectPositionY(),
                 ballSize, ballSize));
-
         for (int i = 0; i < 2; i++)
             graphics2D.fill(new Rectangle2D.Double(bats[i]
                     .getGameObjectPositionX(),
@@ -160,7 +146,6 @@ class ClientPongView extends JFrame implements Observer {
                                           aPongController) {
         pongController = aPongController;
     }
-
     /**
      * Methods Called on a key press
      * calls the controller to process key
@@ -172,11 +157,9 @@ class ClientPongView extends JFrame implements Observer {
             // Make -ve so not confused with normal characters
             pongController.userKeyInteraction(-e.getKeyCode());
         }
-
         public void keyReleased(KeyEvent e) {
             // Called on key release including specials
         }
-
         public void keyTyped(KeyEvent e) {
             // Normal key typed
             pongController.userKeyInteraction(e.getKeyChar());
