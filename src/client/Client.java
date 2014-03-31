@@ -10,7 +10,6 @@ class Client {
         (new Client()).start();
     }
     private Player currentPlayer = null;
-
     /**
      * Start the Client
      */
@@ -29,7 +28,6 @@ class Client {
         /* Display Screen */
         view.setVisible(true);
     }
-
     /**
      * Make contact with the Server who controls the game
      * Players will need to know about the model
@@ -41,16 +39,13 @@ class Client {
         // Also starts the Player task that get the current state
         //  of the game from the server
         Socket serverSocket = null;
-
         try {
             serverSocket = new Socket(Global.host, Global.port);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         assert (serverSocket != null);
         currentPlayer = new Player(model, serverSocket);
         currentPlayer.start();
-
     }
 }
