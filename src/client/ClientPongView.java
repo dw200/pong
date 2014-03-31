@@ -29,14 +29,15 @@ class ClientPongView extends JFrame implements Observer {
     GameObject[] bats;
 
     public ClientPongView() {
-        setSize(windowWidth, windowHeight);                        // Size of window
-        addKeyListener(new Transaction());    // Called when key press
+        /* Size of window */
+        setSize(windowWidth, windowHeight);
+        /* Called when key press */
+        addKeyListener(new Transaction());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
      * Called from the model when its state is changed
-     *
      * @param aPongModel Model of the game
      * @param arg        Argument passed not used
      */
@@ -45,19 +46,20 @@ class ClientPongView extends JFrame implements Observer {
         ball = model.getBall();
         bats = model.getBats();
         DEBUG.trace("ClientPongView.update");
-        repaint();                              // Re draw game
+        /* Re draw game */
+        repaint();
     }
 
     /* Called by repaint */
-    public void update(Graphics g) {
+    public void update(Graphics graphics) {
         /* Draw Picture */
-        drawPicture((Graphics2D) g);
+        drawPicture((Graphics2D) graphics);
     }
 
     /* When 'Window' is first */
-    public void paint(Graphics g) {
+    public void paint(Graphics graphics) {
         /* shown or damaged, Draw Picture */
-        drawPicture((Graphics2D) g);
+        drawPicture((Graphics2D) graphics);
     }
 
     private Dimension alternateDimension; // Alternate Dimension
@@ -69,24 +71,30 @@ class ClientPongView extends JFrame implements Observer {
      *
      * @param graphics2D Graphics context to use
      */
-    public void drawPicture(Graphics2D graphics2D)   // Double buffer
-    {                                         //  allow re-size
-        Dimension dimension = getSize();             // Size of curr. image
-
+    /* Double buffer */
+    public void drawPicture(Graphics2D graphics2D) {
+        /* Allow re-size. Get size of current image. */
+        Dimension dimension = getSize();
+        /* New size */
         if ((alternateGraphics == null) ||
                 (dimension.width != alternateDimension.width) ||
-                (dimension.height != alternateDimension.height)) {                                       // New size
+                (dimension.height != alternateDimension.height)) {
             alternateDimension = dimension;
-            alternateImage = (BufferedImage) createImage(dimension.width, dimension.height);
+            alternateImage = (BufferedImage) createImage(dimension
+                    .width, dimension.height);
             alternateGraphics = alternateImage.createGraphics();
             AffineTransform affineTransform = new AffineTransform();
             affineTransform.setToIdentity();
-            affineTransform.scale(((double) dimension.width) / windowWidth, ((double) dimension.height) / windowHeight);
+            affineTransform.scale(((double) dimension.width) /
+                    windowWidth, ((double) dimension.height) /
+                    windowHeight);
             alternateGraphics.transform(affineTransform);
         }
 
-        drawActualPicture(alternateGraphics);             // Draw Actual Picture
-        graphics2D.drawImage(alternateImage, 0, 0, this);       //  Display on screen
+        /* Draw Actual Picture */
+        drawActualPicture(alternateGraphics);
+        /* Display on screen */
+        graphics2D.drawImage(alternateImage, 0, 0, this);
     }
 
 
@@ -100,47 +108,56 @@ class ClientPongView extends JFrame implements Observer {
      * @param graphics2D Graphics context to use
      */
     public void drawActualPicture(Graphics2D graphics2D) {
-        // White background
-
+        /* Set up the window. */
+        /* White background filling the screen */
         graphics2D.setPaint(Color.white);
-        graphics2D.fill(new Rectangle2D.Double(0, 0, windowWidth, windowHeight));
-
+        graphics2D.fill(new Rectangle2D.Double(0, 0, windowWidth,
+                windowHeight));
+        /* Change colour to grey to paint the border. */
+        graphics2D.setPaint(Color.darkGray);
+        /* Draw the border */
+        graphics2D.draw(new Rectangle2D.Double(borderOffset,
+                menuOffset, windowWidth - borderOffset * 2,
+                windowHeight - menuOffset - borderOffset));
+        /* Display state of game, Race condition */
+        if (ball == null) return;
+        /* Setting the font to Helvetica Neue and the colour Grey */
         Font font = new Font("Helvetica Neue", Font.PLAIN, 14);
         graphics2D.setFont(font);
-
-        // Blue playing border
-
-        graphics2D.setPaint(Color.darkGray);              // Paint Colour
-        graphics2D.draw(new Rectangle2D.Double(borderOffset, menuOffset, windowWidth - borderOffset * 2, windowHeight - menuOffset - borderOffset));
-
-        // Display state of game
-        if (ball == null) return;  // Race condition
-//        graphics2D.setPaint(Color.darkGray);
         FontMetrics fontMetrics = getFontMetrics(font);
-        String stringOutput = "Pong - Ball [%3.0f, %3.0f] Bat [%3.0f, %3.0f]" +
+        /* Output string ready to take information from stringData */
+        String stringOutput = "Pong - Ball [%3.0f, %3.0f] Bat [%3.0f," +
+                " %3.0f]" +
                 " Bat [%3.0f, %3.0f]";
-        String stringRaw = String.format(stringOutput, ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
-                bats[0].getGameObjectPositionX(), bats[0].getGameObjectPositionY(),
-                bats[1].getGameObjectPositionX(), bats[1].getGameObjectPositionY());
-        graphics2D.drawString(stringRaw, windowWidth / 2 - fontMetrics.stringWidth(stringRaw) / 2, (int) menuOffset * 2);
-
-        // The ball at the current x, y position (windowWidth, windowHeight)
-
+        String stringData = String.format(stringOutput,
+                ball.getGameObjectPositionX(),
+                ball.getGameObjectPositionY(),
+                bats[0].getGameObjectPositionX(),
+                bats[0].getGameObjectPositionY(),
+                bats[1].getGameObjectPositionX(),
+                bats[1].getGameObjectPositionY());
+        /* Paint the string of text onto the screen. */
+        graphics2D.drawString(stringData, windowWidth / 2 -
+                fontMetrics.stringWidth(stringData) / 2,
+                (int) menuOffset * 2);
+        /* The ball at the current x, y position (windowWidth,
+        windowHeight) */
         graphics2D.fill(new Ellipse2D.Double(ball
                 .getGameObjectPositionX(),
                 ball.getGameObjectPositionY(),
                 ballSize, ballSize));
 
-//        graphics2D.setPaint(Color.blue);
         for (int i = 0; i < 2; i++)
-            graphics2D.fill(new Rectangle2D.Double(bats[i].getGameObjectPositionX(), bats[i].getGameObjectPositionY(),
+            graphics2D.fill(new Rectangle2D.Double(bats[i]
+                    .getGameObjectPositionX(),
+                    bats[i].getGameObjectPositionY(),
                     batWidth, batHeight));
     }
-
     /**
      * Need to be told where the controller is
      */
-    public void setPongController(ClientPongController aPongController) {
+    public void setPongController(ClientPongController
+                                          aPongController) {
         pongController = aPongController;
     }
 
