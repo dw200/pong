@@ -9,16 +9,14 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
-
 import java.util.Observable;
 import java.util.Observer;
-
 import common.DEBUG;
 import common.GameObject;
-
 import static common.Global.*;
 
 /**
@@ -50,43 +48,45 @@ class ClientPongView extends JFrame implements Observer {
         repaint();                              // Re draw game
     }
 
-    public void update(Graphics g)          // Called by repaint
-    {
-        drawPicture((Graphics2D) g);          // Draw Picture
+    /* Called by repaint */
+    public void update(Graphics g) {
+        /* Draw Picture */
+        drawPicture((Graphics2D) g);
     }
 
-    public void paint(Graphics g)           // When 'Window' is first
-    {                                         //  shown or damaged
-        drawPicture((Graphics2D) g);          // Draw Picture
+    /* When 'Window' is first */
+    public void paint(Graphics g) {
+        /* shown or damaged, Draw Picture */
+        drawPicture((Graphics2D) g);
     }
 
-    private Dimension theAD;              // Alternate Dimension
-    private BufferedImage theAI;              // Alternate Image
-    private Graphics2D theAG;              // Alternate Graphics
+    private Dimension alternateDimension; // Alternate Dimension
+    private BufferedImage alternateImage; // Alternate Image
+    private Graphics2D alternateGraphics; // Alternate Graphics
 
     /**
      * The code that actually displays the game graphically
      *
-     * @param g Graphics context to use
+     * @param graphics2D Graphics context to use
      */
-    public void drawPicture(Graphics2D g)   // Double buffer
+    public void drawPicture(Graphics2D graphics2D)   // Double buffer
     {                                         //  allow re-size
-        Dimension d = getSize();             // Size of curr. image
+        Dimension dimension = getSize();             // Size of curr. image
 
-        if ((theAG == null) ||
-                (d.width != theAD.width) ||
-                (d.height != theAD.height)) {                                       // New size
-            theAD = d;
-            theAI = (BufferedImage) createImage(d.width, d.height);
-            theAG = theAI.createGraphics();
-            AffineTransform at = new AffineTransform();
-            at.setToIdentity();
-            at.scale(((double) d.width) / windowWidth, ((double) d.height) / windowHeight);
-            theAG.transform(at);
+        if ((alternateGraphics == null) ||
+                (dimension.width != alternateDimension.width) ||
+                (dimension.height != alternateDimension.height)) {                                       // New size
+            alternateDimension = dimension;
+            alternateImage = (BufferedImage) createImage(dimension.width, dimension.height);
+            alternateGraphics = alternateImage.createGraphics();
+            AffineTransform affineTransform = new AffineTransform();
+            affineTransform.setToIdentity();
+            affineTransform.scale(((double) dimension.width) / windowWidth, ((double) dimension.height) / windowHeight);
+            alternateGraphics.transform(affineTransform);
         }
 
-        drawActualPicture(theAG);             // Draw Actual Picture
-        g.drawImage(theAI, 0, 0, this);       //  Display on screen
+        drawActualPicture(alternateGraphics);             // Draw Actual Picture
+        graphics2D.drawImage(alternateImage, 0, 0, this);       //  Display on screen
     }
 
 
@@ -97,42 +97,43 @@ class ClientPongView extends JFrame implements Observer {
      * setPaint:   Colour used
      * drawString: Write string on display
      *
-     * @param g Graphics context to use
+     * @param graphics2D Graphics context to use
      */
-    public void drawActualPicture(Graphics2D g) {
+    public void drawActualPicture(Graphics2D graphics2D) {
         // White background
 
-        g.setPaint(Color.white);
-        g.fill(new Rectangle2D.Double(0, 0, windowWidth, windowHeight));
+        graphics2D.setPaint(Color.white);
+        graphics2D.fill(new Rectangle2D.Double(0, 0, windowWidth, windowHeight));
 
-        Font font = new Font("Monospaced", Font.PLAIN, 14);
-        g.setFont(font);
+        Font font = new Font("Helvetica Neue", Font.PLAIN, 14);
+        graphics2D.setFont(font);
 
         // Blue playing border
 
-        g.setPaint(Color.blue);              // Paint Colour
-        g.draw(new Rectangle2D.Double(borderOffset, menuOffset, windowWidth - borderOffset * 2, windowHeight - menuOffset - borderOffset));
+        graphics2D.setPaint(Color.darkGray);              // Paint Colour
+        graphics2D.draw(new Rectangle2D.Double(borderOffset, menuOffset, windowWidth - borderOffset * 2, windowHeight - menuOffset - borderOffset));
 
         // Display state of game
         if (ball == null) return;  // Race condition
-        g.setPaint(Color.blue);
-        FontMetrics fm = getFontMetrics(font);
-        String fmt = "Pong - Ball [%3.0f, %3.0f] Bat [%3.0f, %3.0f]" +
+//        graphics2D.setPaint(Color.darkGray);
+        FontMetrics fontMetrics = getFontMetrics(font);
+        String stringOutput = "Pong - Ball [%3.0f, %3.0f] Bat [%3.0f, %3.0f]" +
                 " Bat [%3.0f, %3.0f]";
-        String text = String.format(fmt, ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
+        String stringRaw = String.format(stringOutput, ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
                 bats[0].getGameObjectPositionX(), bats[0].getGameObjectPositionY(),
                 bats[1].getGameObjectPositionX(), bats[1].getGameObjectPositionY());
-        g.drawString(text, windowWidth / 2 - fm.stringWidth(text) / 2, (int) menuOffset * 2);
+        graphics2D.drawString(stringRaw, windowWidth / 2 - fontMetrics.stringWidth(stringRaw) / 2, (int) menuOffset * 2);
 
         // The ball at the current x, y position (windowWidth, windowHeight)
 
-        g.setPaint(Color.red);
-        g.fill(new Rectangle2D.Double(ball.getGameObjectPositionX(), ball.getGameObjectPositionY(),
+        graphics2D.fill(new Ellipse2D.Double(ball
+                .getGameObjectPositionX(),
+                ball.getGameObjectPositionY(),
                 ballSize, ballSize));
 
-        g.setPaint(Color.blue);
+//        graphics2D.setPaint(Color.blue);
         for (int i = 0; i < 2; i++)
-            g.fill(new Rectangle2D.Double(bats[i].getGameObjectPositionX(), bats[i].getGameObjectPositionY(),
+            graphics2D.fill(new Rectangle2D.Double(bats[i].getGameObjectPositionX(), bats[i].getGameObjectPositionY(),
                     batWidth, batHeight));
     }
 
@@ -147,10 +148,10 @@ class ClientPongView extends JFrame implements Observer {
      * Methods Called on a key press
      * calls the controller to process key
      */
-    class Transaction implements KeyListener  // When character typed
-    {
-        public void keyPressed(KeyEvent e)      // Obey this method
-        {
+    /* When character typed */
+    class Transaction implements KeyListener {
+        /* Obey this method */
+        public void keyPressed(KeyEvent e) {
             // Make -ve so not confused with normal characters
             pongController.userKeyInteraction(-e.getKeyCode());
         }
