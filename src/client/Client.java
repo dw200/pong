@@ -1,10 +1,7 @@
 package client;
-
 import common.*;
-
 import java.io.IOException;
 import java.net.Socket;
-
 /**
  * Start the client that will display the game for a player
  */
