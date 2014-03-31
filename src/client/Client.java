@@ -18,20 +18,21 @@ class Client {
         DEBUG.set(true);
         DEBUG.trace("Pong Client");
         DEBUG.set(false);
-        ClientPongModel model = new ClientPongModel(-1); // pass -1 (player number) as no player yet
+        /* pass -1 (player number) as no player yet */
+        ClientPongModel model = new ClientPongModel(-1);
         ClientPongView view = new ClientPongView();
-        ClientPongController cont = new ClientPongController(model, view);
-
+        ClientPongController cont = new ClientPongController(model,
+                view);
         makeContactWithServer(model, cont);
-
-        model.addObserver(view);       // Add observer to the model
-        view.setVisible(true);           // Display Screen
+        /* Add observer to the model */
+        model.addObserver(view);
+        /* Display Screen */
+        view.setVisible(true);
     }
 
     /**
      * Make contact with the Server who controls the game
      * Players will need to know about the model
-     *
      * @param model Of the game
      * @param cont  Controller (MVC) of the Game
      */
@@ -42,7 +43,7 @@ class Client {
         Socket serverSocket = null;
 
         try {
-            serverSocket = new Socket("127.0.0.1", Global.PORT);
+            serverSocket = new Socket(Global.HOST, Global.PORT);
         } catch (IOException e) {
             e.printStackTrace();
         }
