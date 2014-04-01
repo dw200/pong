@@ -37,11 +37,17 @@ class Client {
         // Also starts the Player task that get the current state
         //  of the game from the server
         Socket serverSocket = null;
+        /** Attempt to connect to a socket using the predefined
+         * constants
+         */
         try {
             serverSocket = new Socket(Global.host, Global.port);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException errorException) {
+            errorException.printStackTrace();
         }
+        /** Check if the connection to the socket succeeded. If it
+         * did then assign a new player and start it
+         */
         assert (serverSocket != null);
         currentPlayer = new Player(model, serverSocket);
         currentPlayer.start();
