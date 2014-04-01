@@ -1,5 +1,4 @@
 package server;
-import common.Global;
 import common.NetObjectWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
