@@ -40,7 +40,7 @@ class Server {
         DEBUG.set(false);
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(Global.PORT);
+            serverSocket = new ServerSocket(Global.port);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
