@@ -1,7 +1,6 @@
 package common;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.BufferedOutputStream;
 import java.net.Socket;
 /**
  * Wrapper for reading an object from a socket
