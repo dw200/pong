@@ -6,10 +6,14 @@ import static common.Global.*;
  * Model of the game of pong (Client)
  */
 public class ClientPongModel extends Observable {
+    /* Create the ball and place in the middle of the screen */
     private GameObject ball = new GameObject(windowWidth / 2,
             windowHeight / 2, ballSize, ballSize);
+    /* Create two 'empty' bats */
     private GameObject bats[] = new GameObject[2];
+    /* Set the player number to be -1 (not set) */
     private int playerNumber = -1;
+    /* Create a new model and create a player */
     public ClientPongModel(int playerNumber) {
         this.playerNumber = playerNumber;
         bats[0] = new GameObject(60, windowHeight / 2, batWidth,
@@ -25,25 +29,11 @@ public class ClientPongModel extends Observable {
         return ball;
     }
     /**
-     * Set a new Ball object
-     * @param aBall - Ball to be set
-     */
-    public void setBall(GameObject aBall) {
-        ball = aBall;
-    }
-    /**
      * Return the Game object representing the Bats for player
      * @return Array of two bats
      */
     public GameObject[] getBats() {
         return bats;
-    }
-    /**
-     * Set the Bats used
-     * @param theBats - Players Bat
-     */
-    public void setBats(GameObject[] theBats) {
-        bats = theBats;
     }
     /**
      * Cause update of view of game
