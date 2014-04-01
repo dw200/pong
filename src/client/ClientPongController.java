@@ -16,13 +16,15 @@ public class ClientPongController {
     public ClientPongController(ClientPongModel aPongModel, ClientPongView aPongView) {
         model = aPongModel;
         view = aPongView;
-        view.setPongController(this);  // View talks to controller
+        /* View talks to controller */
+        view.setPongController(this);
     }
     /**
      * Decide what to do for each key pressed
      * @param keyCode The keycode of the key pressed
      */
     public void userKeyInteraction(int keyCode) {
+        /* If player isn't assigned a number, then they cannot play */
         if (model.getPlayerNumber() <= -1) {
             return;
         }
@@ -30,18 +32,22 @@ public class ClientPongController {
         // Char is ASCII value
         synchronized (model) {
             GameObject bat = model.getBats()[model.getPlayerNumber()];
-            switch (keyCode)              // Character is
-            {
-                case -KeyEvent.VK_LEFT:        // Left Arrow
+            /* Which key is pressed */
+            switch (keyCode) {
+                /* Left Arrow */
+                case -KeyEvent.VK_LEFT:
                     bat.setGameObjectPositionX(bat.getGameObjectPositionX() - Global.batMove);
                     break;
-                case -KeyEvent.VK_RIGHT:       // Right arrow
+                /* Right Arrow */
+                case -KeyEvent.VK_RIGHT:
                     bat.setGameObjectPositionX(bat.getGameObjectPositionX() + Global.batMove);
                     break;
-                case -KeyEvent.VK_UP:          // Up arrow
+                /* Up Arrow */
+                case -KeyEvent.VK_UP:
                     bat.setGameObjectPositionY(bat.getGameObjectPositionY() - Global.batMove);
                     break;
-                case -KeyEvent.VK_DOWN:        // Down arrow
+                /* Down Arrow */
+                case -KeyEvent.VK_DOWN:
                     bat.setGameObjectPositionY(bat.getGameObjectPositionY() + Global.batMove);
                     break;
             }
