@@ -7,9 +7,9 @@ import java.net.Socket;
  * Wrapper for reading an object from a socket
  */
 public class NetObjectWriter extends ObjectOutputStream {
-    public NetObjectWriter(Socket s) throws IOException {
-        super(s.getOutputStream());
-        s.setTcpNoDelay(true); // Send data immediately
+    public NetObjectWriter(Socket socket) throws IOException {
+        super(socket.getOutputStream());
+        socket.setTcpNoDelay(true); // Send data immediately
     }
     // write object to socket returning false on error
     public synchronized boolean put(Object data) {
@@ -21,9 +21,9 @@ public class NetObjectWriter extends ObjectOutputStream {
              it will cache the string */
             reset();
             return true; // Ok
-        } catch (IOException err) {
+        } catch (IOException errorException) {
             DEBUG.error("NetObjectWriter.get %s",
-                    err.getMessage());
+                    errorException.getMessage());
             return false; // Failed write
         }
     }

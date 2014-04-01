@@ -5,15 +5,16 @@ import java.net.Socket;
  * Wrapper to allow reading of objects from a socket
  */
 public class NetObjectReader extends ObjectInputStream {
-    public NetObjectReader(Socket s) throws IOException {
-        super(s.getInputStream());
+    public NetObjectReader(Socket socket) throws IOException {
+        super(socket.getInputStream());
     }
     // Get object return null on 'error'
     public synchronized Object get() { // Get object from stream
         try {
             return readObject(); // Return read object
-        } catch (Exception err) { // Reading error
-            DEBUG.error("NetObjectReader.get %s", err.getMessage());
+        } catch (Exception errorException) { // Reading error
+            DEBUG.error("NetObjectReader.get %s",
+                    errorException.getMessage());
             return null; //  On error return null
         }
     }
