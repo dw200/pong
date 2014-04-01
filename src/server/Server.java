@@ -9,9 +9,6 @@ import common.*;
  * starts the play of the game
  */
 class Server {
-    private NetObjectWriter player1NetObjectWriter,
-            player2NetObjectWriter;
-    private Player player1, player2;
     /* ArrayList to hold the game objects */
     ArrayList<Game> games = new ArrayList<Game>();
     /**
