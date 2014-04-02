@@ -45,7 +45,7 @@ public class ClientPongModel extends Observable {
     public int getPlayerNumber() {
         return playerNumber;
     }
-    public void setPlayerNumber(int newPlayerNumber) {
-        playerNumber = newPlayerNumber;
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
     }
 }
