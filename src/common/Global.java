@@ -1,5 +1,4 @@
 package common;
-
 /**
  * Major constants used in the game
  */
