@@ -1,7 +1,7 @@
 package common;
 import java.io.*;
 /*
- * An Object in the game, represented as a rectangle
+ * An Object in the game, represented as a rectangle or ellipse
  * Holds details of shape, plus possible direction of travel
  */
 public class GameObject implements Serializable {
