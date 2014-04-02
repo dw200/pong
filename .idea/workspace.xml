@@ -7,7 +7,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd302f89-4de8-4506-b937-cb20e190427b" name="Default" comment="">
+    <list default="true" id="dd302f89-4de8-4506-b937-cb20e190427b" name="Default" comment="Add report">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PongCoursework.iws" />
@@ -691,7 +691,7 @@
       <workItem from="1396354610103" duration="13232000" />
       <workItem from="1396459943864" duration="669000" />
       <workItem from="1396461355697" duration="283000" />
-      <workItem from="1396462001921" duration="313000" />
+      <workItem from="1396462001921" duration="401000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1395318770997</created>
@@ -981,11 +981,19 @@
       <created>1396462677708</created>
       <updated>1396462677708</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Add report">
+      <created>1396462875471</created>
+      <updated>1396462875471</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Add report">
+      <created>1396462936915</created>
+      <updated>1396462936915</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53571000" />
+    <option name="totallyTimeSpent" value="53659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -1065,7 +1073,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Remove unecessary author comment." />
     <MESSAGE value="Tidy code. Add comments to explain." />
     <MESSAGE value="Add compiled java class files" />
     <MESSAGE value="Reinstate host constant." />
@@ -1090,7 +1097,8 @@
     <MESSAGE value="Remove empty line" />
     <MESSAGE value="Add artifacts" />
     <MESSAGE value="Edit README" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit README" />
+    <MESSAGE value="Add report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add report" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
