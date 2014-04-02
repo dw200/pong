@@ -31,24 +31,29 @@ public class ClientPongController {
         // Key typed includes specials, -ve
         // Char is ASCII value
         synchronized (model) {
+            /* Only get the bat of the current player */
             GameObject bat = model.getBats()[model.getPlayerNumber()];
             /* Which key is pressed */
             switch (keyCode) {
                 /* Left Arrow */
                 case -KeyEvent.VK_LEFT:
-                    bat.setGameObjectPositionX(bat.getGameObjectPositionX() - Global.batMove);
+                    bat.setGameObjectPositionX(bat
+                            .getGameObjectPositionX() - Global.batMove);
                     break;
                 /* Right Arrow */
                 case -KeyEvent.VK_RIGHT:
-                    bat.setGameObjectPositionX(bat.getGameObjectPositionX() + Global.batMove);
+                    bat.setGameObjectPositionX(bat
+                            .getGameObjectPositionX() + Global.batMove);
                     break;
                 /* Up Arrow */
                 case -KeyEvent.VK_UP:
-                    bat.setGameObjectPositionY(bat.getGameObjectPositionY() - Global.batMove);
+                    bat.setGameObjectPositionY(bat
+                            .getGameObjectPositionY() - Global.batMove);
                     break;
                 /* Down Arrow */
                 case -KeyEvent.VK_DOWN:
-                    bat.setGameObjectPositionY(bat.getGameObjectPositionY() + Global.batMove);
+                    bat.setGameObjectPositionY(bat
+                            .getGameObjectPositionY() + Global.batMove);
                     break;
             }
             model.modelChanged();
