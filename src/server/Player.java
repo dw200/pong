@@ -13,7 +13,6 @@ public class Player extends Thread {
     private NetObjectReader reader;
     /**
      * Constructor
-     *
      * @param playerNumber Player 1 or 2
      * @param currentModel  Model of the game
      * @param socket      Socket used to communicate the players bat move
