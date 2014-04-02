@@ -7,9 +7,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd302f89-4de8-4506-b937-cb20e190427b" name="Default" comment="Refactored playerNumber">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/client.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/server.xml" />
+    <list default="true" id="dd302f89-4de8-4506-b937-cb20e190427b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PongCoursework.iws" />
@@ -94,11 +92,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.68435" vertical-offset="0" max-vertical-offset="2576">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2576">
               <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.36899862" vertical-offset="99" max-vertical-offset="874">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -119,16 +127,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2208" max-vertical-offset="2760">
               <caret line="48" column="52" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="758" max-vertical-offset="3266">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -212,6 +210,7 @@
         <option value="$PROJECT_DIR$/src/client/ClientPongController.java" />
         <option value="$PROJECT_DIR$/src/server/ServerPongModel.java" />
         <option value="$PROJECT_DIR$/src/common/Global.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -692,7 +691,7 @@
       <workItem from="1396354610103" duration="13232000" />
       <workItem from="1396459943864" duration="669000" />
       <workItem from="1396461355697" duration="283000" />
-      <workItem from="1396462001921" duration="57000" />
+      <workItem from="1396462001921" duration="313000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1395318770997</created>
@@ -974,11 +973,19 @@
       <created>1396460931358</created>
       <updated>1396460931358</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Add artifacts">
+      <created>1396462070773</created>
+      <updated>1396462070773</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Edit README">
+      <created>1396462677708</created>
+      <updated>1396462677708</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53315000" />
+    <option name="totallyTimeSpent" value="53571000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -1058,8 +1065,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Change ball to ellipse. Refactor code to more meaningful variable names" />
-    <MESSAGE value="Tidy up comments at top." />
     <MESSAGE value="Remove unecessary author comment." />
     <MESSAGE value="Tidy code. Add comments to explain." />
     <MESSAGE value="Add compiled java class files" />
@@ -1083,7 +1088,9 @@
     <MESSAGE value="Remove setBat and setBall methods. Corrected spelling of delimiter" />
     <MESSAGE value="Refactored code and change comment style" />
     <MESSAGE value="Remove empty line" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove empty line" />
+    <MESSAGE value="Add artifacts" />
+    <MESSAGE value="Edit README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1095,14 +1102,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="2714">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1060" max-vertical-offset="2714">
@@ -1460,8 +1459,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.68435" vertical-offset="0" max-vertical-offset="2576">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2576">
           <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36899862" vertical-offset="99" max-vertical-offset="874">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>
