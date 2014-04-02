@@ -22,7 +22,6 @@ public class ServerPongModel extends Observable {
      * quicker than this we don't have to worry. */
     private volatile ArrayBlockingQueue<String> updateQueue = new
             ArrayBlockingQueue<String>(256);
-
     private Thread activeModel;
     /* Create the server pong model and position the bats accordingly
      on the screen. */
@@ -47,13 +46,6 @@ public class ServerPongModel extends Observable {
         return ball;
     }
     /**
-     * Set a new Ball object
-     * @param aBall - Ball to be set
-     */
-    public void setBall(GameObject aBall) {
-        ball = aBall;
-    }
-    /**
      * Return the Game object representing the Bat for player
      * @param player 0 or 1
      */
@@ -66,15 +58,6 @@ public class ServerPongModel extends Observable {
      */
     public GameObject[] getBats() {
         return bats;
-    }
-
-    /**
-     * Set the Bat for a player
-     * @param player 0 or 1
-     * @param theBat Players Bat
-     */
-    public void setBat(int player, GameObject theBat) {
-        bats[player] = theBat;
     }
     /**
      * Cause update of view of game
@@ -91,7 +74,7 @@ public class ServerPongModel extends Observable {
         ArrayList<String> updates = new ArrayList<String>();
         updateQueue.drainTo(updates);
         for (String update:updates) {
-            // split the string by the delimeter ',' and put into array
+            // split the string by the delimiter ',' and put into array
             String[] data = update.split(",");
             assert(data.length != 3);
             int playerNumber = Integer.parseInt(data[0]);
